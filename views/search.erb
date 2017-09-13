@@ -1,0 +1,16 @@
+<form action="search">
+    <input type="text" class="siimple-input" name="word">
+    <div class="siimple-btn siimple-btn--blue" onclick="javascript:this.parentNode.submit();">検索</div>
+</form>
+
+「<%= @word %>」の検索結果
+
+<ul>
+
+    <% @users.each do |u| %>
+    <li>
+        <span><a href="/user/<%= u.id %>"><%= u.name %></a></span>
+    </li>
+    <% end %>
+
+</ul>

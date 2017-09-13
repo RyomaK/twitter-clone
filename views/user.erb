@@ -1,0 +1,33 @@
+<div class="siimple-h2"><%=@user.name %>'s Profile
+<% if @user.id != session[:user_id] then %>
+    <form method="POST" action="/follow" style="display: inline-block;">
+        <input type="hidden" name="user_id" value="<%= @user.id %>">
+    <% if @isFollow then %>
+        <input type="hidden" name="follow" value="unfollow">
+        <div class="siimple-btn siimple-btn--blue user-follow" onclick="javascript:this.parentNode.submit();">Unfollow</div>
+    <% else %>
+        <input type="hidden" name="follow" value="follow">
+        <div class="siimple-btn siimple-btn--blue user-follow" onclick="javascript:this.parentNode.submit();">Follow</div>
+    <% end %>
+    </form>
+<% end %>
+</div>
+
+<a href="/user/<%= session[:user_id] %>/follow"><div class="siimple-btn siimple-btn--blue user-follow">Follow</div></a>
+<a href="/user/<%= session[:user_id] %>/follower"><div class="siimple-btn siimple-btn--blue user-follow">Follower</div></a>
+
+<h2><%=@user.name %>'s Tweet</h2>
+<table class="timeline">
+    <tr>
+    <th>tweet</th>
+    <th>user</th>
+    <th>date</th>
+    </tr>
+    <% @tweets.length.times do |i| %>
+    <tr>
+    <td><a href="/article/<%= @tweets[i].id %>"><%=@tweets[i].text%></a></td>
+    <td><%=@user.name%></td>
+    <td><%= getTime(@tweets[i].post_time)%></td>
+    </tr>
+    <%end%>
+</table>

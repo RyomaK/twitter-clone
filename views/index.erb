@@ -1,0 +1,16 @@
+<div class="siimple-h2">Time Line</div>
+
+<table class="timeline">
+	<tr>
+	<th>tweet</th>
+	<th>user</th>
+	<th>date</th>
+	</tr>
+	<% @tweets.length.times do |i| %>
+	<tr>
+	<td><a href="/article/<%= @tweets[i].id %>"><%=@tweets[i].text%></a></td>
+	<td><a href="/user/<%= @tweets[i].user_id %>"><%= @tweets[i].name %></a></td>
+    <td><%= getTime(@tweets[i].post_time) %></td>
+    </tr>
+    <%end%>
+</table>
